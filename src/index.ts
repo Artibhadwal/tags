@@ -41,7 +41,7 @@ app.use(allowCrossDomain);
 // Define Routes
 app.get("/", (req, res) => {
   // res.send("Express JS on Vercel");
-    res.sendFile(path.resolve( "public", "index.html"));
+    res.sendFile(path.resolve( "client", "build", "index.html"));
 
 });
 
@@ -50,10 +50,10 @@ app.use("/api", routes);
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static("public"));
+  app.use(express.static("client/build"));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "public", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
